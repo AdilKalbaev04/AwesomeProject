@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { View, StyleSheet, TextInput, Button, Text } from "react-native";
 
-const MyForm = () => {
+const MyForm = ({ data }) => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
 
@@ -20,6 +20,7 @@ const MyForm = () => {
 
   return (
     <View>
+      <Text>{data}</Text>
       <TextInput
         placeholder="Enter your name"
         onChangeText={handleNameChange}
