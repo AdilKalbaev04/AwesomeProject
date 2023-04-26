@@ -1,58 +1,35 @@
-import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View, ActivityIndicator } from "react-native";
-import MyForm from "./components/form/Form";
-import Calculator from "./components/Calc/Calc";
-import axios from "axios";
-import { useEffect, useState } from "react";
-export default function App() {
-  const [items, setItems] = useState("");
-  const [isLoading, setIsLoading] = useState(true);
+import { createStackNavigator } from "@react-navigation/stack";
+import { NavigationContainer } from "@react-navigation/native";
+import FullPost from "./components/FullPost/FullPost";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import SettingsScreen from "./components/SettingsScreen/SettingsScreen";
+import { HomePage } from "./components/pages/HomePage";
+const Stack = createStackNavigator();
 
-  const fetchItem = () => {
-    setIsLoading(true);
-    axios
-      .get("https://native-7ecd8-default-rtdb.firebaseio.com/data.json")
-      .then(({ data }) => {
-        setItems(data);
-      })
-      .catch((err) => {
-        console.log(err);
-      })
-      .finally(() => {
-        setIsLoading(false);
-      });
-  };
-  useEffect(fetchItem, []);
-  if (isLoading) {
-    return (
-      <View
-        style={{
-          flex: 1,
-          justifyContent: "center",
-          alignItems: "center",
-          gap: 10,
-        }}
-      >
-        <ActivityIndicator size={"large"} />
-        <Text>Загрузка...</Text>
-      </View>
-    );
-  }
+const Tab = createBottomTabNavigator();
 
+const Home = () => {
   return (
-    <View style={styles.container}>
-      <MyForm data={items.title} />
-      {/* <Calculator /> */}
-      <StatusBar backgroundColor="red" barStyle="light-content" height={50} />
-    </View>
+    <NavigationContainer independent={true}>
+      <Stack.Navigator>
+        <Stack.Screen name="Home" component={HomePage} />
+        <Stack.Screen name="FullPost" component={FullPost} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
-}
+};
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-});
+export default MyTabs = () => {
+  return (
+    <NavigationContainer>
+      <Tab.Navigator>
+        <Tab.Screen
+          options={{ headerShown: false }}
+          name="Posts"
+          component={Home}
+        />
+        <Tab.Screen name="Form" component={SettingsScreen} />
+      </Tab.Navigator>
+    </NavigationContainer>
+  );
+};

@@ -1,8 +1,8 @@
 {
   "expo": {
-    "name": "AwesomeProject",
+    "name": "Posts",
     "slug": "AwesomeProject",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
@@ -21,10 +21,16 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.adilkalbaev.AwesomeProject"
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "5364abd3-72f5-4f8b-a226-56f3daf51f47"
+      }
     }
   }
 }
